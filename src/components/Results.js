@@ -1,9 +1,10 @@
 import React from 'react';
+import Chart from './Chart';
 
-const Results = () => {
+const Results = (props) => {
   return (
     <div className="results col-md-9">
-      <h4>Results section</h4>
+      <Chart state={props.state}/>
     </div>
   )
 }
