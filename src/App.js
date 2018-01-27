@@ -74,16 +74,52 @@ class App extends Component {
 
   resultlog = () => {
     console.log(this.state)
+    const sunsetHour = Number(this.state.astronomy.sun_phase.sunset.hour)
     const sunset = (
-      'Sunset - ' + Number(this.state.astronomy.sun_phase.sunset.hour - 12) + ':' + 
+      'Sunset - ' + Number(sunsetHour - 12) + ':' + 
       this.state.astronomy.sun_phase.sunset.minute + ' PM'
     )
+    const sunriseHour = Number(this.state.astronomy.sun_phase.sunrise.hour)
     const sunrise = (
-      'Sunrise - ' + this.state.astronomy.sun_phase.sunrise.hour + ':' + 
+      'Sunrise - ' + sunriseHour + ':' + 
       this.state.astronomy.sun_phase.sunrise.minute + ' AM'
     )
-    console.log(sunset, sunrise)
     const weather = this.state.weather
+
+    weather.forEach((hourly) => {
+      hourly = hourly.FCTTIME.hour
+      console.log(typeof hourly )    
+    })
+
+
+
+    const timeArray = (
+      sunset + ',' +
+      weather[0].FCTTIME.civil + ',' +
+      weather[1].FCTTIME.civil + ',' +
+      weather[2].FCTTIME.civil + ',' +
+      weather[3].FCTTIME.civil + ',' +
+      weather[4].FCTTIME.civil + ',' +
+      weather[5].FCTTIME.civil + ',' +
+      weather[6].FCTTIME.civil + ',' +
+      weather[7].FCTTIME.civil + ',' +
+      weather[8].FCTTIME.civil + ',' +
+      weather[9].FCTTIME.civil + ',' +
+      weather[10].FCTTIME.civil + ',' +
+      weather[11].FCTTIME.civil + ',' +
+      weather[12].FCTTIME.civil + ',' +
+      weather[13].FCTTIME.civil + ',' +
+      weather[14].FCTTIME.civil + ',' +
+      weather[15].FCTTIME.civil + ',' +
+      weather[16].FCTTIME.civil + ',' +
+      weather[17].FCTTIME.civil + ',' +
+      weather[18].FCTTIME.civil + ',' +
+      weather[19].FCTTIME.civil + ',' +
+      weather[20].FCTTIME.civil + ',' +
+      weather[21].FCTTIME.civil + ',' +
+      weather[22].FCTTIME.civil + ',' +
+      sunrise
+    ).split(",")
     const cloudArray = (
       weather[0].sky + ',' +
       weather[1].sky + ',' +
@@ -165,37 +201,6 @@ class App extends Component {
       weather[23].wspd.metric + ',' +
       weather[24].wspd.metric
     ).split(",")
-    const timeArray = (
-      sunset + ',' +
-      weather[0].FCTTIME.civil + ',' +
-      weather[1].FCTTIME.civil + ',' +
-      weather[2].FCTTIME.civil + ',' +
-      weather[3].FCTTIME.civil + ',' +
-      weather[4].FCTTIME.civil + ',' +
-      weather[5].FCTTIME.civil + ',' +
-      weather[6].FCTTIME.civil + ',' +
-      weather[7].FCTTIME.civil + ',' +
-      weather[8].FCTTIME.civil + ',' +
-      weather[9].FCTTIME.civil + ',' +
-      weather[10].FCTTIME.civil + ',' +
-      weather[11].FCTTIME.civil + ',' +
-      weather[12].FCTTIME.civil + ',' +
-      weather[13].FCTTIME.civil + ',' +
-      weather[14].FCTTIME.civil + ',' +
-      weather[15].FCTTIME.civil + ',' +
-      weather[16].FCTTIME.civil + ',' +
-      weather[17].FCTTIME.civil + ',' +
-      weather[18].FCTTIME.civil + ',' +
-      weather[19].FCTTIME.civil + ',' +
-      weather[20].FCTTIME.civil + ',' +
-      weather[21].FCTTIME.civil + ',' +
-      weather[22].FCTTIME.civil + ',' +
-      weather[23].FCTTIME.civil + ',' +
-      weather[24].FCTTIME.civil + ',' +
-      sunrise
-    ).split(",")
-
-    console.log(timeArray)
 
 
     this.setState({
@@ -206,13 +211,13 @@ class App extends Component {
             pointRadius: 0,
             label: 'Cloud cover (%)',
             data: cloudArray,
-            backgroundColor: 'rgba(13, 26, 124, 0.2)'
+            backgroundColor: 'rgba(255, 0, 225, 0.2)'
           },
           {
             pointRadius: 0,
             label: 'Humidity (%)',
             data: humidityArray,
-            backgroundColor: 'rgba(238, 255, 0, 0.3)'
+            backgroundColor: 'rgba(255, 100, 0, 0.3)'
           },
           {
             pointRadius: 0,
@@ -235,7 +240,7 @@ class App extends Component {
     return (
       <div>
         {/* <Nav /> */}
-        <div className="container">
+        <div className="">
           <div className="row">
             <div className="col-md-3">
               <form onSubmit={this.formSubmitHandler}>
@@ -243,7 +248,7 @@ class App extends Component {
                 <button type="submit">Submit</button>
               </form>
             </div>
-            {this.state.route === 'display' ? <Results state={this.state}/> : ''}                     
+            {this.state.route === 'display' ? <Results state={this.state}/> : ''}
           </div>
         </div>
       </div>

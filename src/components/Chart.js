@@ -11,8 +11,9 @@ const Chart = (props) => {
             display: true
           },
           title: {
-            display: true,
-            text: 'Tonight'
+            display: false,
+            text: 'Tonight',
+            position: 'bottom'
           },  
           scales: {              
             xAxes: [{
