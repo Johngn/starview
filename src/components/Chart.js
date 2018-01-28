@@ -4,36 +4,38 @@ import { Line } from 'react-chartjs-2';
 const Chart = (props) => {
   return (
     <div className="chart">
+    <div className="container">
       <Line
         data={props.state.chartData}
         options={{            
           legend: {
-            display: true
+            display: false
           },
           title: {
-            display: false,
-            text: 'Tonight',
-            position: 'bottom'
+            display: false
           },  
           scales: {              
             xAxes: [{
+              display: true,
               gridLines: {
                 display: false
               }
             }],
             yAxes: [{
+              display: true,
               ticks: {
                 beginatZero: true,
                 max: 100,
                 min: 0
               },
               gridLines: {
-                display: false
+                display: true
               }
             }]
           }        
         }}
       />
+      </div>
     </div>      
   )  
 }

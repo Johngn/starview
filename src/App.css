@@ -1,26 +1,141 @@
 /* APP */
 
+body {
+  background: #05011f;
+}
+
 .row {
+  max-width: 700px;
+  margin: 10px auto 10px 0;
+}
+
+.border-line {  
+  border-bottom: 1px solid #555;
 }
 
 
 /* NAV */
 
-.nav {
-  background: #10c97c;
+.navbar {
+  background: #15032e;
+  border-bottom: 1px solid #555;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  margin: 10px 0;
+  padding: 0;
+  color: rgb(185, 185, 185);
+}
+
+.last {
+  margin-left: 30px;
 }
 
 
 
 /* SEARCH */
 
+#PlacesAutocomplete__root * {
+  margin: 0;
+  padding: 0;
+}
+
+input, select, button {
+  background: #15032e;
+  color:rgb(185, 185, 185);
+}
+
+input {
+  border: 1px solid #555;
+  /* border-top-left-radius: 10px; */
+  /* border-bottom-left-radius: 10px; */
+  margin: 0;
+  padding: 0;
+}
+
 .search {
   background: #f4f4f4;
+}
+
+select{
+  border-radius: 0;
+  border: 1px solid #555;
+  width: 100%;
+  height: 45px;
+  padding: 9px;
+  margin: 0;
+}
+
+.form-inline {
+  padding: 0;
+}
+
+button {
+  width: 100%;
+  height: 45px;
+  border: 1px solid #555;
+  text-transform: uppercase;
+  /* border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px; */
+}
+
+.col-2 {
+  padding: 0;
+}
+
+.col-3 {
+  padding: 0;
+}
+
+.col-7 {
+  padding-right: 0;
+  padding-left: 0;
 }
 
 
 
 /* RESULTS */
 
-.results {
+.chart {
+  max-width: 1500px;
+  margin: 10px auto;
+}
+
+.legend {
+  margin: 10px 20px;
+  font-size: 1rem;
+}
+
+.legend p {
+  margin: 0;
+}
+
+.legend-cloud {
+  color: red;
+}
+
+.legend-humidity {
+  color: rgb(255, 100, 0);
+}
+
+.legend-wind {
+  color: rgb(255, 0, 225);
+}
+
+
+
+
+
+/* FOOTER */
+
+footer {
+  background: #15032e;
+  margin-top: 50px;
+  border-top: 1px solid #555;
+  text-align: center;
+  color: rgb(187, 185, 185);
+  padding: 10px;
 }
