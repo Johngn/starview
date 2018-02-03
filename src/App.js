@@ -3,7 +3,7 @@ import axios from 'axios';
 import Nav from './components/Nav';
 import Results from './components/Results';
 import Sidebar from './components/Sidebar';
-import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
+import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import './App.css';
 
 class App extends Component {
@@ -139,7 +139,7 @@ class App extends Component {
           humidityArray = [], 
           windArray = []
     nightTimeWeather.forEach((hourly) => {
-      let forecastTime = hourly.FCTTIME.hour
+      let forecastTime = hourly.FCTTIME.civil
       let cloud = hourly.sky
       let humidity = hourly.humidity
       let wind = hourly.wspd.metric
