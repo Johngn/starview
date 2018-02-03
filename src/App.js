@@ -183,12 +183,12 @@ class App extends Component {
       <section>
         <nav className="navbar">
           <div className="container">
-            <li className="nav-link"><Link to="/">Skyview</Link></li>
+            <li className="nav-link"><Link to="/skyview">Skyview</Link></li>
             <li className="nav-link"><Link to="/about">About</Link></li>
             <li className="nav-link"><Link to="/contact">Contact</Link></li>
           </div>      
         </nav>
-        <Route path="/" exact render={() => 
+        <Route path="/skyview" exact render={() => 
         <div>
           <div className="container">
             <form className="row" onSubmit={this.formSubmitHandler}>
