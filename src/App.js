@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Nav from './components/Nav';
 import Results from './components/Results';
 import Sidebar from './components/Sidebar';
+import About from './components/About';
+import Welcome from './components/Welcome';
+import Contact from './components/Contact';
+import { Route, Link } from 'react-router-dom';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import './App.css';
 
@@ -22,18 +25,12 @@ class App extends Component {
     } 
   }
 
-
-
-
   // select day
   dayPickerHandler = (e) => {
     this.setState({
       day: e.target.value
     }, () => this.resultlog())
   }
-
-
-
 
   // Api calls
   apiCall = (latLng) => {
@@ -65,9 +62,6 @@ class App extends Component {
         console.log(error);
       })      
   }
-
-
-
   
   // get location and convert to lat lng
   formSubmitHandler = (event) => {
@@ -186,25 +180,42 @@ class App extends Component {
     }
 
     return (
-      <div>
-        <Nav />
-        <div className="container">
-          <form className="row" onSubmit={this.formSubmitHandler}>
-          <div className="col-sm-7 col-7">
-            <PlacesAutocomplete inputProps={inputProps}  />
-            </div>
-            {this.state.route === 'display' ? 
-            <div className="col-sm-3 col-3">
-            <Sidebar dayPickerHandler={this.dayPickerHandler} state={this.state} />
-            </div> : ''}
-            <div className="col-sm-2 col-2">
-            <button className="" type="submit">Go</button>
-            </div>
-          </form>          
-        </div>
+      <section>
+        <nav className="navbar">
+          <div className="container">
+            <li className="nav-link"><Link to="/">Skyview</Link></li>
+            <li className="nav-link"><Link to="/about">About</Link></li>
+            <li className="nav-link"><Link to="/contact">Contact</Link></li>
+          </div>      
+        </nav>
+        <Route path="/" exact render={() => 
+        <div>
+          <div className="container">
+            <form className="row" onSubmit={this.formSubmitHandler}>
+              <div className="col-sm-7 col-7">
+                <PlacesAutocomplete  
+                  inputProps={inputProps}  
+                />
+              </div>
+              { this.state.route !== '' ?               
+              <div className="col-sm-3 col-3">            
+                <Sidebar
+                  dayPickerHandler={this.dayPickerHandler}
+                  state={this.state}
+                />
+              </div> : ''}
+              <div className="col-sm-2 col-2">
+                <button className="" type="submit">Go</button>
+              </div>
+            </form>          
+          </div>
         <div className="border-line"></div>
-        {this.state.route === 'display' ? <Results state={this.state}/> : ''}
-      </div>
+        {this.state.route !== '' ? <Results state={this.state} /> : <Welcome />}
+        </div>
+      } />
+      <Route path="/about" component={About} />
+      <Route path="/contact" component={Contact} />
+      </section>
     );
   }
 }

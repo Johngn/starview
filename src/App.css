@@ -24,16 +24,29 @@ body {
   padding: 0;
 }
 
+.navbar li {
+  list-style: none;
+}
+
+.navbar li:nth-child(2) {
+  margin: 0 15px 0 auto;
+}
+
 .nav-link {
+  margin: 10px 0;
+  padding: 0;
+}
+
+.nav-link a {
   margin: 10px 0;
   padding: 0;
   color: rgb(185, 185, 185);
 }
 
-.last {
-  margin-left: 30px;
+.nav-link a:hover {
+  color:  rgb(112, 112, 119);
+  text-decoration: none;
 }
-
 
 
 /* SEARCH */
@@ -67,6 +80,7 @@ select{
   height: 46px;
   padding: 9px;
   margin: 0;
+  cursor: pointer;
 }
 
 .form-inline {
@@ -78,8 +92,13 @@ button {
   height: 46px;
   border: 1px solid #555;
   text-transform: uppercase;
+  cursor: pointer;
   /* border-top-right-radius: 10px;
   border-bottom-right-radius: 10px; */
+}
+
+button:hover {
+  color:  rgb(112, 112, 119);
 }
 
 .col-2 {
@@ -98,6 +117,10 @@ button {
 
 
 /* RESULTS */
+
+.chart .container {
+  height: 500px;
+}
 
 .chart {
   max-width: 1500px;
@@ -123,6 +146,31 @@ button {
 
 .legend-wind {
   color: rgb(255, 0, 225);
+}
+
+
+/* WELCOME */
+
+#welcome p {
+  margin-top: 25px;
+  color: #b8b8b8;
+  font-size: 1.2rem;
+}
+
+/* ABOUT */
+
+#about p {
+  margin-top: 25px;
+  color: #b8b8b8;
+  font-size: 1.2rem;
+}
+
+/* CONTACT */
+
+#contact p {
+  margin-top: 25px;
+  color: #b8b8b8;
+  font-size: 1.2rem;
 }
 
 
