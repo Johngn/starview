@@ -2,10 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Results from "./components/Results";
 import Sidebar from "./components/Sidebar";
-import About from "./components/About";
 import Welcome from "./components/Welcome";
-import Contact from "./components/Contact";
-import { Route, Link } from "react-router-dom";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
@@ -50,17 +47,16 @@ class App extends Component {
     });
     axios
       .get(
-        `http://api.wunderground.com/api/547a76a2afd69505/hourly10day/q/${
-          latLng.lat
-        },${latLng.lng}.json`
+        `api.openweathermap.org/data/2.5/weather?q=London&APPID=f33d03be6862e5e82150c45691c13aed`
       )
       .then(response => {
-        this.setState(
-          {
-            weather: response.data.hourly_forecast
-          },
-          () => this.getAstro()
-        );
+        console.log(response);
+        // this.setState(
+        //   {
+        //     weather: response.data.hourly_forecast
+        //   },
+        //   () => this.getAstro()
+        // );
       })
       .catch(error => {
         console.log(error);
@@ -107,14 +103,6 @@ class App extends Component {
     console.log(this.state);
     const sunsetHour = Number(this.state.astronomy.sun_phase.sunset.hour);
     const sunriseHour = Number(this.state.astronomy.sun_phase.sunrise.hour);
-    // const sunset = (
-    //   'Sunset - ' + Number(sunsetHour - 12) + ':' +
-    //   this.state.astronomy.sun_phase.sunset.minute + ' PM'
-    // )
-    // const sunrise = (
-    //   'Sunrise - ' + sunriseHour + ':' +
-    //   this.state.astronomy.sun_phase.sunrise.minute + ' AM'
-    // )
     const weather = this.state.weather;
 
     const middayArray = [];
@@ -207,57 +195,36 @@ class App extends Component {
 
     return (
       <section>
-        <nav className="navbar">
+        <div>
           <div className="container">
-            <li className="nav-link">
-              <Link to="/skyview">Skyview</Link>
-            </li>
-            <li className="nav-link">
-              <Link to="/about">About</Link>
-            </li>
-            <li className="nav-link">
-              <Link to="/contact">Contact</Link>
-            </li>
-          </div>
-        </nav>
-        <Route
-          path="/skyview"
-          exact
-          render={() => (
-            <div>
-              <div className="container">
-                <form className="row" onSubmit={this.formSubmitHandler}>
-                  <div className="col-sm-7 col-7">
-                    <PlacesAutocomplete inputProps={inputProps} />
-                  </div>
-                  {this.state.route !== "" ? (
-                    <div className="col-sm-3 col-3">
-                      <Sidebar
-                        dayPickerHandler={this.dayPickerHandler}
-                        state={this.state}
-                      />
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                  <div className="col-sm-2 col-2">
-                    <button className="" type="submit">
-                      Go
-                    </button>
-                  </div>
-                </form>
+            <form className="row" onSubmit={this.formSubmitHandler}>
+              <div className="col-sm-7 col-7">
+                <PlacesAutocomplete inputProps={inputProps} />
               </div>
-              <div className="border-line" />
               {this.state.route !== "" ? (
-                <Results state={this.state} />
+                <div className="col-sm-3 col-3">
+                  <Sidebar
+                    dayPickerHandler={this.dayPickerHandler}
+                    state={this.state}
+                  />
+                </div>
               ) : (
-                <Welcome />
+                ""
               )}
-            </div>
+              <div className="col-sm-2 col-2">
+                <button className="" type="submit">
+                  Go
+                </button>
+              </div>
+            </form>
+          </div>
+          <div className="border-line" />
+          {this.state.route !== "" ? (
+            <Results state={this.state} />
+          ) : (
+            <Welcome />
           )}
-        />
-        <Route path="/about" component={About} />
-        <Route path="/contact" component={Contact} />
+        </div>
       </section>
     );
   }
