@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Results from "./components/Results";
-import Sidebar from "./components/Sidebar";
+// import Sidebar from "./components/Sidebar";
 import Welcome from "./components/Welcome";
 import PlacesAutocomplete, {
   geocodeByAddress,
@@ -35,9 +35,21 @@ class App extends Component {
     );
   };
 
-  // Api calls
-  apiCall = latLng => {
-    this.getWeather(latLng);
+  // places autocomplete
+  onChange = address => {
+    this.setState({
+      address
+    });
+  };
+
+  // get location and convert to lat lng
+  formSubmitHandler = event => {
+    event.preventDefault();
+
+    geocodeByAddress(this.state.address)
+      .then(results => getLatLng(results[0]))
+      .then(latLng => this.getWeather(latLng))
+      .catch(error => console.error("Error", error));
   };
 
   getWeather = latLng => {
@@ -45,35 +57,17 @@ class App extends Component {
       lat: latLng.lat,
       lng: latLng.lng
     });
-    axios
-      .get(
-        `api.openweathermap.org/data/2.5/weather?q=London&APPID=f33d03be6862e5e82150c45691c13aed`
-      )
-      .then(response => {
-        console.log(response);
-        // this.setState(
-        //   {
-        //     weather: response.data.hourly_forecast
-        //   },
-        //   () => this.getAstro()
-        // );
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
 
-  getAstro = () => {
     axios
       .get(
-        `http://api.wunderground.com/api/547a76a2afd69505/astronomy/q/${
-          this.state.lat
-        },${this.state.lng}.json`
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${
+          latLng.lat
+        }&lon=${latLng.lng}&appid=f33d03be6862e5e82150c45691c13aed`
       )
       .then(response => {
         this.setState(
           {
-            astronomy: response.data
+            weather: response.data.list
           },
           () => this.resultlog()
         );
@@ -83,74 +77,50 @@ class App extends Component {
       });
   };
 
-  // get location and convert to lat lng
-  formSubmitHandler = event => {
-    event.preventDefault();
-
-    geocodeByAddress(this.state.address)
-      .then(results => getLatLng(results[0]))
-      .then(latLng => this.apiCall(latLng))
-      .catch(error => console.error("Error", error));
-  };
-  // places autocomplete
-  onChange = address => {
-    this.setState({
-      address
-    });
-  };
-
   resultlog = () => {
-    console.log(this.state);
-    const sunsetHour = Number(this.state.astronomy.sun_phase.sunset.hour);
-    const sunriseHour = Number(this.state.astronomy.sun_phase.sunrise.hour);
     const weather = this.state.weather;
 
-    const middayArray = [];
-    weather.forEach(hourIndex => {
-      if (hourIndex.FCTTIME.hour === (sunriseHour + 1).toString()) {
-        middayArray.push(weather.indexOf(hourIndex));
-      }
-    });
+    // let weatherTonight = [];
 
-    let weatherTonight = [];
+    // switch (this.state.day) {
+    //   case "0":
+    //     weatherTonight = weather.slice(0, 5);
+    //     break;
+    //   case "1":
+    //     weatherTonight = weather.slice(5, 10);
+    //     break;
+    //   case "2":
+    //     weatherTonight = weather.slice(10, 15);
+    //     break;
+    //   case "3":
+    //     weatherTonight = weather.slice(15, 20);
+    //     break;
+    //   case "4":
+    //     weatherTonight = weather.slice(20, 25);
+    //     break;
+    //   default:
+    //     weatherTonight = weather.slice(0, 5);
+    // }
 
-    switch (this.state.day) {
-      case "0":
-        weatherTonight = weather.slice(0, middayArray[0]);
-        break;
-      case "1":
-        weatherTonight = weather.slice(middayArray[0], middayArray[1]);
-        break;
-      case "2":
-        weatherTonight = weather.slice(middayArray[1], middayArray[2]);
-        break;
-      case "3":
-        weatherTonight = weather.slice(middayArray[2], middayArray[3]);
-        break;
-      case "4":
-        weatherTonight = weather.slice(middayArray[3], middayArray[4]);
-        break;
-      default:
-        weatherTonight = weather.slice(0, middayArray[0]);
-    }
+    // const nightTimeWeather = weatherTonight.filter(
+    //   weatherHour =>
+    //     !(
+    //       Number(weatherHour[0].dt_txt.slice(10, 13)) > 10 &&
+    //       Number(weatherHour[0].dt_txt.slice(10, 13)) <= 20
+    //     )
+    // );
 
-    const nightTimeWeather = weatherTonight.filter(
-      weatherHour =>
-        !(
-          Number(weatherHour.FCTTIME.hour) > sunriseHour &&
-          Number(weatherHour.FCTTIME.hour) <= sunsetHour
-        )
-    );
+    // console.log(weatherTonight[0].dt_txt.slice(10, 13));
 
     const forecastTimes = [],
       cloudArray = [],
       humidityArray = [],
       windArray = [];
-    nightTimeWeather.forEach(hourly => {
-      let forecastTime = hourly.FCTTIME.civil;
-      let cloud = hourly.sky;
-      let humidity = hourly.humidity;
-      let wind = hourly.wspd.metric;
+    weather.forEach(hourly => {
+      let forecastTime = hourly.dt_txt;
+      let cloud = hourly.clouds.all;
+      let humidity = hourly.main.humidity;
+      let wind = hourly.wind.speed;
 
       forecastTimes.push(forecastTime);
       cloudArray.push(cloud);
@@ -203,10 +173,10 @@ class App extends Component {
               </div>
               {this.state.route !== "" ? (
                 <div className="col-sm-3 col-3">
-                  <Sidebar
+                  {/* <Sidebar
                     dayPickerHandler={this.dayPickerHandler}
                     state={this.state}
-                  />
+                  /> */}
                 </div>
               ) : (
                 ""
