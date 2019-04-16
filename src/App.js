@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Results from "./components/Results";
 // import Sidebar from "./components/Sidebar";
-import Welcome from "./components/Welcome";
+// import Welcome from "./components/Welcome";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
@@ -189,11 +189,8 @@ class App extends Component {
             </form>
           </div>
           <div className="border-line" />
-          {this.state.route !== "" ? (
-            <Results state={this.state} />
-          ) : (
-            <Welcome />
-          )}
+
+          <Results state={this.state} />
         </div>
       </section>
     );

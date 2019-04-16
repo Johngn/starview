@@ -1,11 +1,11 @@
-import React from 'react';
-import Chart from './Chart';
+import React from "react";
+import Chart from "./Chart";
 
-const Results = (props) => {
+const Results = props => {
   return (
-    <div className="results">
-      <Chart state={props.state}/>
-      <div className="info container">
+    <div className="results container">
+      <Chart state={props.state} />
+      <div className=" container">
         <div className="legend">
           <p className="legend-cloud">Cloud cover (%)</p>
           <p className="legend-humidity">Humitity (%)</p>
@@ -13,7 +13,7 @@ const Results = (props) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Results;
