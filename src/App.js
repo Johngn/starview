@@ -76,7 +76,6 @@ class App extends Component {
 
   resultlog = () => {
     const weather = this.state.weather;
-    console.log(weather);
 
     let weatherTonight = [];
 
@@ -99,8 +98,6 @@ class App extends Component {
       default:
         weatherTonight = weather.slice(0, 8);
     }
-
-    console.log(weatherTonight);
 
     // const nightTimeWeather = weatherTonight.filter(
     //   (weatherHour) =>
