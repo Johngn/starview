@@ -1,7 +1,7 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
 
-const Chart = props => {
+const Chart = (props) => {
   return (
     <div className="chart">
       <div className="">
@@ -10,19 +10,26 @@ const Chart = props => {
           options={{
             maintainAspectRatio: true,
             legend: {
-              display: false
+              display: true,
+              labels: {
+                fontColor: "#fff",
+              },
             },
             title: {
-              display: false
+              display: false,
             },
             scales: {
               xAxes: [
                 {
                   display: true,
+                  ticks: {
+                    fontSize: 15,
+                    fontColor: "#fff",
+                  },
                   gridLines: {
-                    display: false
-                  }
-                }
+                    display: false,
+                  },
+                },
               ],
               yAxes: [
                 {
@@ -30,14 +37,16 @@ const Chart = props => {
                   ticks: {
                     beginatZero: true,
                     max: 100,
-                    min: 0
+                    min: 0,
+                    fontSize: 15,
+                    fontColor: "#fff",
                   },
                   gridLines: {
-                    display: true
-                  }
-                }
-              ]
-            }
+                    display: true,
+                  },
+                },
+              ],
+            },
           }}
         />
       </div>
