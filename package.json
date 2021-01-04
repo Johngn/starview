@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://Johngn.github.io/skyview",
   "dependencies": {
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "bootstrap": "^4.0.0",
     "chart.js": "^2.7.1",
     "chartjs-plugin-annotation": "^0.5.7",
