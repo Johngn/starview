@@ -1,6 +1,6 @@
 :root {
     --one: #261e5e;
-    --two: #5e1e49;
+    --two: #3f1e34;
     --three: #161a1e;
 }
 
@@ -11,8 +11,8 @@
 /* APP */
 
 body {
-    /* background: var(--two); */
-    background-image: url("./img/space1.jpg");
+    background: var(--two);
+    /* background-image: url("./img/space1.jpg"); */
     /* background-repeat: no-repeat; */
     background-size: cover;
 }
@@ -25,6 +25,15 @@ body {
     max-width: 500px;
     width: 100%;
     margin: 20px auto;
+    border: 1px solid black;
+    padding: 20px;
+    background-color: rgb(51, 58, 83);
+    box-shadow: 1px 1px 5px black;
+    border-radius: 5px;
+}
+
+.submit-button {
+    cursor: pointer;
 }
 
 /* RESULTS */
@@ -32,11 +41,12 @@ body {
 .chart {
     padding: 20px;
     border: 1px solid black;
-    border-radius: 10px;
+    border-radius: 5px;
     max-width: 100%;
     width: 1000px;
     margin: 20px auto;
-    background-color: rgba(51, 48, 77, 0.8);
+    background-color: rgb(51, 58, 83);
+    box-shadow: 1px 1px 5px black;
 }
 
 .legend {
