@@ -2,7 +2,6 @@
   "name": "skyview",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/",
   "dependencies": {
     "axios": "^0.21.1",
     "bootstrap": "^4.0.0",
