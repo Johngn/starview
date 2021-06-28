@@ -1,106 +1,112 @@
 :root {
-    --one: #261e5e;
-    --two: #3f1e34;
-    --three: #161a1e;
+  --one: #261e5e;
+  --two: #8b8b8b;
+  --three: #161a1e;
 }
 
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 /* APP */
 
 body {
-    background: var(--two);
-    /* background-image: url("./img/space1.jpg"); */
-    /* background-repeat: no-repeat; */
-    background-size: cover;
+  background: var(--two);
+  /* background-image: url("./img/space1.jpg"); */
+  /* background-repeat: no-repeat; */
+  background-size: cover;
 }
 
 /* SEARCH */
 
 .searchform {
-    display: flex;
-    justify-content: space-between;
-    max-width: 500px;
-    width: 100%;
-    margin: 20px auto;
-    border: 1px solid black;
-    padding: 20px;
-    background-color: rgb(51, 58, 83);
-    box-shadow: 1px 1px 5px black;
-    border-radius: 5px;
+  display: flex;
+  justify-content: space-around;
+  max-width: 500px;
+  width: 100%;
+  margin: 20px auto;
+  border: 1px solid black;
+  padding: 20px;
+  background-color: rgb(51, 58, 83);
+  box-shadow: 1px 1px 5px black;
+  border-radius: 5px;
 }
 
 .submit-button {
-    cursor: pointer;
+  cursor: pointer;
+  min-width: 50px;
+  width: 15%;
+}
+
+.day-picker-select {
+  width: 20%;
 }
 
 /* RESULTS */
 
 .chart {
-    padding: 20px;
-    border: 1px solid black;
-    border-radius: 5px;
-    max-width: 100%;
-    width: 1000px;
-    margin: 20px auto;
-    background-color: rgb(51, 58, 83);
-    box-shadow: 1px 1px 5px black;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+  max-width: 100%;
+  width: 1000px;
+  margin: 20px auto;
+  background-color: rgb(51, 58, 83);
+  box-shadow: 1px 1px 5px black;
 }
 
 .legend {
-    margin: 10px 20px;
-    font-size: 1rem;
+  margin: 10px 20px;
+  font-size: 1rem;
 }
 
 .legend p {
-    margin: 0;
+  margin: 0;
 }
 
 .legend-cloud {
-    color: red;
+  color: red;
 }
 
 .legend-humidity {
-    color: rgb(255, 100, 0);
+  color: rgb(255, 100, 0);
 }
 
 .legend-wind {
-    color: rgb(255, 0, 225);
+  color: rgb(255, 0, 225);
 }
 
 /* WELCOME */
 
 #welcome p {
-    margin-top: 25px;
-    color: #b8b8b8;
-    font-size: 1.2rem;
+  margin-top: 25px;
+  color: #b8b8b8;
+  font-size: 1.2rem;
 }
 
 /* ABOUT */
 
 #about p {
-    margin-top: 25px;
-    color: #b8b8b8;
-    font-size: 1.2rem;
+  margin-top: 25px;
+  color: #b8b8b8;
+  font-size: 1.2rem;
 }
 
 /* CONTACT */
 
 #contact p {
-    margin-top: 25px;
-    color: #b8b8b8;
-    font-size: 1.2rem;
+  margin-top: 25px;
+  color: #b8b8b8;
+  font-size: 1.2rem;
 }
 
 /* FOOTER */
 
 footer {
-    background: #15032e;
-    margin-top: 50px;
-    border-top: 1px solid #555;
-    text-align: center;
-    color: rgb(187, 185, 185);
-    padding: 10px;
+  background: #15032e;
+  margin-top: 50px;
+  border-top: 1px solid #555;
+  text-align: center;
+  color: rgb(187, 185, 185);
+  padding: 10px;
 }
