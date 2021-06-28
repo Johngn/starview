@@ -155,6 +155,7 @@ class App extends Component {
     // places autocomplete
     const inputProps = {
       value: this.state.address,
+      placeholder: 'Search Location',
       onChange: this.onChange,
     };
 
