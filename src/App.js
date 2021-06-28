@@ -59,7 +59,7 @@ class App extends Component {
 
     axios
       .get(
-        `https://api.openweathermap.org/data/2.5/forecast?lat=${latLng.lat}&lon=${latLng.lng}&appid=f33d03be6862e5e82150c45691c13aed`
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${latLng.lat}&lon=${latLng.lng}&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`
       )
       .then(response => {
         this.setState(
